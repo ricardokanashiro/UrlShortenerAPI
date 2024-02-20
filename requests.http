@@ -1,0 +1,10 @@
+POST http://localhost:3333/short/
+Content-Type: application/json
+
+{
+    "url": "https://www.youtube.com/watch?v=SLpUKAGnm-g"
+}
+
+###
+
+GET http://localhost:3333/short/9hxCW8JwF

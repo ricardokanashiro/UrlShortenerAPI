@@ -1,0 +1,18 @@
+{
+  "name": "UrlShortener",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon server.js"
+  },
+  "dependencies": {
+    "fastify": "^4.26.1",
+    "postgres": "^3.4.3",
+    "shortid": "^2.2.16"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
