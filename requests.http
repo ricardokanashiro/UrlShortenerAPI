@@ -1,10 +1,10 @@
-POST http://localhost:3333/short/
+POST http://localhost:3333/
 Content-Type: application/json
 
 {
-    "url": "https://www.youtube.com/watch?v=SLpUKAGnm-g"
+    "url": "https://github.com/ricardokanashiro"
 }
 
 ###
 
-GET http://localhost:3333/short/9hxCW8JwF
+GET http://localhost:3333/jZItRX-aT
