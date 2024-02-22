@@ -1,34 +1,32 @@
 import { fastify } from "fastify"
-import { DatabaseMemory } from "./database-memory.js"
+import { DatabasePostgres } from "./database-postgres.js"
 
 const server = fastify()
 
-const db = new DatabaseMemory()
+const db = new DatabasePostgres
 
-server.post('/', (req, rep) => {
-    db.verifyLinkExpiration()
+server.post('/', async (req, rep) => {
+    await db.verifyLinkExpiration()
+    
+    console.log(await db.list())
 
     const { url } = req.body
 
-    const shortId = db.insert(url)
-
-    console.log(db.list())
+    const shortId = await db.create(url)
 
     return rep.status(200).send({
         shortUrl: `http://localhost:3333/${shortId}`
     });
 })
 
-server.get('/:url', (req, rep) => {
-    db.verifyLinkExpiration()
+server.get('/:id', async (req, rep) => {
+    await db.verifyLinkExpiration()
 
-    const url = req.params.url
+    const id = req.params.id
 
-    const fullUrl = db.get(url)[0].full
+    const fullUrl = Array.from(await db.get(id))
 
-    console.log(db.list())
-
-    return rep.redirect(fullUrl)
+    return rep.redirect(fullUrl[0].fulllink)
 })
 
 server.listen({

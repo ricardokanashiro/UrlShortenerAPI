@@ -1,1 +1,5 @@
 node_modules
+.env
+create-table.js
+database-memory.js
+requests.http
