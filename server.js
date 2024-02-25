@@ -33,8 +33,7 @@ server.get('/:id', async (req, rep) => {
 
     console.log(fullUrl)
 
-    // return rep.redirect(fullUrl[0].fulllink)
-    return rep.status(200).send(fullUrl)
+    return rep.redirect(fullUrl[0].fulllink)
 })
 
 server.listen({
