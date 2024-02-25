@@ -12,8 +12,6 @@ const db = new DatabasePostgres
 
 server.post('/', async (req, rep) => {
     await db.verifyLinkExpiration()
-    
-    console.log(await db.list())
 
     const { url } = req.body
 
@@ -31,11 +29,9 @@ server.get('/:id', async (req, rep) => {
 
     const fullUrl = Array.from(await db.get(id))
 
-    console.log(fullUrl)
-
     return rep.redirect(fullUrl[0].fulllink)
 })
 
 server.listen({
     port: 3333
-}, () => console.log('Server ON'))
+})
