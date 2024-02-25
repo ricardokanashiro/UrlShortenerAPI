@@ -1,7 +1,12 @@
 import { fastify } from "fastify"
 import { DatabasePostgres } from "./database-postgres.js"
+import cors from '@fastify/cors'
 
 const server = fastify()
+
+server.register(cors, {
+    origin: process.env.ENABLED_CORS?.split(';') || []
+})
 
 const db = new DatabasePostgres
 
@@ -26,7 +31,10 @@ server.get('/:id', async (req, rep) => {
 
     const fullUrl = Array.from(await db.get(id))
 
-    return rep.redirect(fullUrl[0].fulllink)
+    console.log(fullUrl)
+
+    // return rep.redirect(fullUrl[0].fulllink)
+    return rep.status(200).send(fullUrl)
 })
 
 server.listen({

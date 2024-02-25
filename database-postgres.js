@@ -22,7 +22,7 @@ export class DatabasePostgres {
     }
 
     async get(shorturl) {
-        return await sql`select * from links where shortlink = 'UjQ8DE6tZ'`
+        return await sql`select * from links where shortlink = ${shorturl}`
     }
 
     async list() {
